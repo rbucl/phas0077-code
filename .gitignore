@@ -1,0 +1,5 @@
+.DS_Store
+Diatomic*/
+Multiatomic*/
+__pycache__/
+*.pdf
