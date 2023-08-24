@@ -445,7 +445,7 @@ def calculatePowerSpectrum(vacf):
     powerSpectrum = np.abs(np.fft.fft(vacf))**2
     return powerSpectrum
 
-def plotPowerSpectrum(filepath, powerSpectrum, xlim, yscalelog = True):
+def plotPowerSpectrum(filepath, powerSpectrum, xlim, yscalelog = False):
     validateFilepath(filepath)
     if (debugMode):
         if (not isinstance(powerSpectrum, np.ndarray)):
@@ -464,8 +464,10 @@ def plotPowerSpectrum(filepath, powerSpectrum, xlim, yscalelog = True):
     plt.xlim(xlim)
     if (yscalelog):
         plt.yscale("log")
+        plt.ylabel("$\log(P(\omega))$")
+    else:
+        plt.ylabel("$P(\omega)$")
     plt.xlabel("$\omega$")
-    plt.ylabel("$\log(P(\omega))$")
     plt.legend()
     plt.title("Power Spectrum")
     plt.savefig(filepath / 'PowerSpectrum')

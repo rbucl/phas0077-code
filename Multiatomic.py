@@ -576,8 +576,10 @@ def plotPowerSpectrum(filepath, powerSpectrum, xlim, yscalelog = True):
     plt.xlim(xlim)
     if (yscalelog):
         plt.yscale("log")
+        plt.ylabel("$\log(P(\omega))$")
+    else:
+        plt.ylabel("$P(\omega)$")
     plt.xlabel("$\omega$")
-    plt.ylabel("$\log(P(\omega))$")
     plt.legend()
     plt.title("Power Spectrum")
     plt.savefig(filepath / 'PowerSpectrum')

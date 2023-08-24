@@ -1,5 +1,7 @@
 .DS_Store
+temp_*/
 Diatomic*/
 Multiatomic*/
 __pycache__/
 *.pdf
+fort.8888

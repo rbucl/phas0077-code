@@ -1,33 +1,8 @@
-program test 
-implicit none 
-integer :: i,j,k
-real*8 :: roh1,roh2,cth,cthb,th,thb,v
-real*8, parameter :: roh0=0.35d0!, rch0=rcn0
-real*8, parameter ::  pi=dacos(-1.0d0), dx=0.01
-integer, parameter :: nstep=250
-integer :: iomdiat,iomatom,sigdiat,sigatom,nelec,nelecmax
-
-
-roh1=0.958649d0/0.5291772d0
-do k=0,180,1
-   th=dble(k)
-   th=dble(th)/180.0d0*pi
-   do j=1,nstep
-      roh2=(roh0 + dx*(j-1))/0.5291772d0
-      !do i=1,nstep
-      !   rcn=(rcn0 + dx*(i-1))/0.5291772d0
-         call POTS(V,roh1,roh2,th)
-         write(56,*) roh2*0.5291772d0,180*th/pi,v
-      !end do 
-   end do 
-   write(56,*) " " 
-end do 
-
-
-end program test
-
-      SUBROUTINE POTS(V,rij1,rij2,rij3)
+      SUBROUTINE double_precision_POTS(rij1,rij2,rij3,result)
       implicit double precision (a-h,o-y),logical(z)
+      real*8, intent(in) :: rij1,rij2,rij3
+      real*8, intent(out) :: result
+  
 !
 !    pes for h2o,
 !    Harry Partridge and David W. Schwenke, J. Chem. Phys.,
@@ -605,5 +580,7 @@ end program test
 
        v=v*exp(-b1*((rij1-reoh)**2+(rij2-reoh)**2)) &
            +c5z(1)+voh1+voh2+vhh
+      result=v
+      write(8888,*)v,rij1,rij2,rij3
       return
       end 
